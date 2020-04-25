@@ -7,29 +7,69 @@ package persona;
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
  */
-public class Persona
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public abstract class Persona {
 
-    /**
-     * Constructor for objects of class Persona
-     */
-    public Persona()
-    {
-        // initialise instance variables
-        x = 0;
+    private String name;
+    private String fiscalId;
+    private FiscalIdType fiscalIdType;
+    private Address address;
+
+    protected Persona(String name, String fiscalId, FiscalIdType fiscalIdType) {
+        this.name = name;
+        this.fiscalIdType = fiscalIdType;
+        this.fiscalId = fiscalId;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    public abstract void printData();
+
+    public void printFiscalData(){
+        switch (fiscalIdType){
+            case DNI:
+                System.out.println("DNI " + getFiscalId());
+            case CIF:
+                System.out.println("cif " + getFiscalId());
+        }
+    }
+
+    public void printAddress(){
+        if(address != null){
+            System.out.println("Calle: " + address.getStreet());
+            System.out.println("Ciudad: " + address.getCity());
+            System.out.println("Cp: " + address.getZipCode());
+            System.out.println("Pais: " + address.getCountry());
+            System.out.println("Tlf. contacto: " + address.getContactPhone());
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFiscalId() {
+        return fiscalId;
+    }
+
+    public void setFiscalId(String fiscalId) {
+        this.fiscalId = fiscalId;
+    }
+
+    public FiscalIdType getFiscalIdType() {
+        return fiscalIdType;
+    }
+
+    public void setFiscalIdType(FiscalIdType fiscalIdType) {
+        this.fiscalIdType = fiscalIdType;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

@@ -8,25 +8,45 @@ package mueble;
  * @version 1.0.0
  */
 public abstract class Mueble{
-    private final int id;
+
     private final Material material;
-    private String articleName;
+    private String modelName;
     private int price;
     private boolean order;
-    private int pedidoId;
-    private static int count = 0;
+    private int orderId;
 
-    protected Mueble(String articleName, int price, Material material) {
-        this.articleName = articleName;
+    protected Mueble(String modelName, int price, Material material) {
+        this.modelName = modelName;
         this.price = price;
         this.material = material;
         this.order = false;
-        this.id = count;
-        count ++;
     }
 
-    public int getId() {
-        return id;
+    public abstract void printData();
+
+    public void printFeatures(){
+        System.out.println("Modelo : " + getModelName());
+        System.out.println("Precio : " + getPrice());
+        printMaterial();
+        if(belongsToOrder()){
+            System.out.println("Orden id : " + getOrderId());
+        }
+    }
+
+    public void printMaterial(){
+        switch (material){
+            case CRISTAL:
+                System.out.println("Material: Cristal");
+                break;
+            case MADERA:
+                System.out.println("Material: Madera");
+            case PLASTICO:
+                System.out.println("Material: Plastico");
+                break;
+            case METAL:
+                System.out.println("Material: Metal");
+                break;
+        }
     }
 
     public int getPrice() {
@@ -45,20 +65,20 @@ public abstract class Mueble{
         this.order = order;
     }
 
-    public int getPedidoId() {
-        return pedidoId;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setPedidoId(int pedidoId) {
-        this.pedidoId = pedidoId;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
-    public String getArticleName() {
-        return articleName;
+    public String getModelName() {
+        return modelName;
     }
 
-    public void setArticleName(String articleName) {
-        this.articleName = articleName;
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
     }
 
     public Material getMaterial() {

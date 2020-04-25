@@ -3,33 +3,13 @@ package mueble;
 
 /**
  * Write a description of class Silla here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Juan Sebastian Flor Usma
+ * @version 1.0.0
  */
-public class Silla
-{
-    // instance variables - replace the example below with your own
-    private int x;
+public abstract class Silla extends Mueble{
 
-    /**
-     * Constructor for objects of class Silla
-     */
-    public Silla()
-    {
-        // initialise instance variables
-        x = 0;
-    }
-
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    protected Silla(String articleName, int price, Material material) {
+        super(articleName, price, material);
     }
 }

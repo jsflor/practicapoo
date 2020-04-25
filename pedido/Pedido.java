@@ -3,9 +3,9 @@ package pedido;
 
 /**
  * Write a description of class Pedido here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ *
+ * @author Juan Sebastian Flor Usma
+ * @version 1.0.0
  */
 public class Pedido
 {

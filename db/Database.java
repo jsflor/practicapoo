@@ -1,11 +1,5 @@
 package db;
 
-
-import mueble.*;
-import persona.*;
-
-import java.util.ArrayList;
-
 /**
  * Write a description of class Database here.
  *
@@ -14,24 +8,37 @@ import java.util.ArrayList;
  */
 public class Database {
 
-    private ArrayList<Mueble> muebles;
-    private ArrayList<Persona> personas;
+    private MueblesCollection muebles;
+    private PersonasCollection personas;
+    private PedidosCollection pedidos;
 
-    public Database() {}
+    public Database() {
+        muebles = new MueblesCollection();
+        personas = new PersonasCollection();
+        pedidos = new PedidosCollection();
+    }
 
-    public ArrayList<Mueble> getMuebles() {
+    public MueblesCollection getMuebles() {
         return muebles;
     }
 
-    public void setMuebles(ArrayList<Mueble> muebles) {
+    public void setMuebles(MueblesCollection muebles) {
         this.muebles = muebles;
     }
 
-    public ArrayList<Persona> getPersonas() {
+    public PersonasCollection getPersonas() {
         return personas;
     }
 
-    public void setPersonas(ArrayList<Persona> personas) {
+    public void setPersonas(PersonasCollection personas) {
         this.personas = personas;
+    }
+
+    public PedidosCollection getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(PedidosCollection pedidos) {
+        this.pedidos = pedidos;
     }
 }

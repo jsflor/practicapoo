@@ -11,15 +11,14 @@ import db.Database;
  */
 public class Menu {
 
-    private Database db;
+    private final Database db;
 
-    public Menu(){}
+    public Menu() {
+        db = new Database();
+    }
 
     public Database getDb() {
         return db;
     }
 
-    public void setDb(Database db) {
-        this.db = db;
-    }
 }

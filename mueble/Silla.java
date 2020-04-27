@@ -25,6 +25,7 @@ public abstract class Silla extends Mueble{
         printFeatures();
     }
 
+    @Override
     public int getId() {
         return id;
     }

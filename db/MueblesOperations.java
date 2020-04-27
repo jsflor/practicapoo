@@ -13,7 +13,8 @@ import java.util.List;
 public interface MueblesOperations {
 
     List<Mueble> getAllMuebles(String filter);
-    Mueble getMuebleById(String id);
+    List<Mueble> getMuebleById(String filter, String id);
+    List<Mueble> getMueblesByType(String filter);
     void insertOneMueble(Mueble m);
     void updateOneMueble(Mueble m);
     void deleteOneMueble(String id);

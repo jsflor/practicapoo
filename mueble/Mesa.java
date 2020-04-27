@@ -25,6 +25,7 @@ public abstract class Mesa extends Mueble{
         printFeatures();
     }
 
+    @Override
     public int getId() {
         return id;
     }

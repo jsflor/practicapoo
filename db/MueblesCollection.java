@@ -1,10 +1,11 @@
 package db;
 
 
-import mueble.Mueble;
+import mueble.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Write a description of class MueblesCollection here.
@@ -22,27 +23,88 @@ public class MueblesCollection implements MueblesOperations{
 
     @Override
     public List<Mueble> getAllMuebles(String filter) {
-        return null;
+        return getMueblesByType(filter);
     }
 
     @Override
-    public Mueble getMuebleById(String id) {
-        return null;
+    public List<Mueble> getMuebleById(String filter, String id) {
+       List<Mueble> mueblesFiltered = getMueblesByType(filter);
+        List<Mueble> result = new ArrayList<>();
+       for (Mueble m: mueblesFiltered){
+            if(id.equals(Integer.toString(m.getId()))){
+                result.add(m);
+            }
+       }
+       return result;
+    }
+
+    @Override
+    public List<Mueble> getMueblesByType(String filter) {
+        List<Mueble> result;
+        switch (filter){
+            case "MCCRISTAL":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof MesaCafeCristal)
+                        .collect(Collectors.toList());
+                break;
+            case "MCMADERA":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof MesaCafeMadera)
+                        .collect(Collectors.toList());
+                break;
+            case "MDORMITORIO":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof MesaDormitorio)
+                        .collect(Collectors.toList());
+                break;
+            case "MCOMEDOR":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof MesaComedor)
+                        .collect(Collectors.toList());
+                break;
+            case "SPLEGABLE":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof SillaPlegable)
+                        .collect(Collectors.toList());
+                break;
+            case "SCOCINA":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof SillaCocina)
+                        .collect(Collectors.toList());
+                break;
+            case "SORUEDAS":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof SillaOficinaRuedas)
+                        .collect(Collectors.toList());
+                break;
+            case "SOSINRUEDAS":
+                result = getMuebles().stream()
+                        .filter(m -> m instanceof SillaOficinaSinRuedas)
+                        .collect(Collectors.toList());
+                break;
+            default:
+                result = getMuebles();
+        }
+        return result;
     }
 
     @Override
     public void insertOneMueble(Mueble m) {
-
+        getMuebles().add(m);
+        System.out.println("Añadido nuevo mueble con id: " + m.getId());
     }
 
     @Override
     public void updateOneMueble(Mueble m) {
-
+        getMuebles().removeIf(mu -> mu.getId() == m.getId());
+        getMuebles().add(m);
+        System.out.println("Actualizado mueble con id: " + m.getId());
     }
 
     @Override
     public void deleteOneMueble(String id) {
-
+        getMuebles().removeIf(m -> id.equals(Integer.toString(m.getId())));
+        System.out.println("Borrado mueble con id: " + id);
     }
 
     public List<Mueble> getMuebles() {

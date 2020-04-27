@@ -24,6 +24,8 @@ public abstract class Mueble{
 
     public abstract void printData();
 
+    public abstract int getId();
+
     public void printFeatures(){
         System.out.println("Modelo : " + getModelName());
         System.out.println("Precio : " + getPrice());

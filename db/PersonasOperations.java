@@ -13,7 +13,8 @@ import java.util.List;
 public interface PersonasOperations {
 
     List<Persona> getAllPersonas(String filter);
-    Persona getPersonaById(String id);
+    List<Persona> getPersonaById(String filter, String id);
+    List<Persona> getPersonasByType(String filter);
     void insertOnePersona(Persona p);
     void updateOnePersona(Persona p);
     void deleteOnePersona(String id);

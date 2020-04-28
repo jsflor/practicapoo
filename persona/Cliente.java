@@ -18,6 +18,7 @@ public abstract class Cliente extends Persona {
         count++;
     }
 
+    @Override
     public int getId() {
         return id;
     }

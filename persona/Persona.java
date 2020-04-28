@@ -1,6 +1,8 @@
 package persona;
 
 
+import java.util.ArrayList;
+
 /**
  * Write a description of class Persona here.
  *
@@ -13,6 +15,7 @@ public abstract class Persona {
     private String fiscalId;
     private FiscalIdType fiscalIdType;
     private Address address;
+    private ArrayList<Integer> pedidos;
 
     protected Persona(String name, String fiscalId, FiscalIdType fiscalIdType) {
         this.name = name;
@@ -21,6 +24,8 @@ public abstract class Persona {
     }
 
     public abstract void printData();
+
+    public abstract int getId();
 
     public void printFiscalData(){
         switch (fiscalIdType){
@@ -71,5 +76,13 @@ public abstract class Persona {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public ArrayList<Integer> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(ArrayList<Integer> pedidos) {
+        this.pedidos = pedidos;
     }
 }

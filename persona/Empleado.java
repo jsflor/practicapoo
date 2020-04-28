@@ -27,6 +27,7 @@ public abstract class Empleado extends Persona {
         printAddress();
     }
 
+    @Override
     public int getId() {
         return id;
     }

@@ -1,3 +1,4 @@
+import menu.MenuPrincipal;
 
 /**
  * Write a description of class fabrica here.
@@ -7,6 +8,6 @@
  */
 public class fabrica{
     public static void main(String[] args){
-        System.out.println("Welcome!");
+        new MenuPrincipal();
     }
 }

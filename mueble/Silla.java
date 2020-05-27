@@ -12,7 +12,7 @@ public abstract class Silla extends Mueble{
     private final int id;
     private static int count = 0;
 
-    protected Silla(String articleName, int price, Material material) {
+    protected Silla(String articleName, float price, Material material) {
         super(articleName, price, material);
         id = count;
         count++;

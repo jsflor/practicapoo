@@ -8,7 +8,7 @@ package mueble;
  * @version 1.0.0
  */
 public class SillaPlegable extends Silla{
-    protected SillaPlegable(String articleName, int price, Material material) {
+    public SillaPlegable(String articleName, float price, Material material) {
         super(articleName, price, material);
     }
 }

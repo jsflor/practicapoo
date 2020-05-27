@@ -8,7 +8,7 @@ package mueble;
  * @version 1.0.0
  */
 public class MesaCafeCristal extends MesaCafe {
-    protected MesaCafeCristal(String articleName, int price, Material material) {
+    public MesaCafeCristal(String articleName, float price, Material material) {
         super(articleName, price, material);
     }
 }

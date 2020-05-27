@@ -8,7 +8,7 @@ package mueble;
  * @version 1.0.0
  */
 public class MesaCafeMadera extends MesaCafe {
-    protected MesaCafeMadera(String articleName, int price, Material material) {
+    public MesaCafeMadera(String articleName, float price, Material material) {
         super(articleName, price, material);
     }
 }

@@ -11,11 +11,11 @@ public abstract class Mueble{
 
     private final Material material;
     private String modelName;
-    private int price;
+    private float price;
     private boolean order;
     private int orderId;
 
-    protected Mueble(String modelName, int price, Material material) {
+    protected Mueble(String modelName, float price, Material material) {
         this.modelName = modelName;
         this.price = price;
         this.material = material;
@@ -51,11 +51,11 @@ public abstract class Mueble{
         }
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

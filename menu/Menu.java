@@ -12,10 +12,10 @@ import java.util.Scanner;
  */
 abstract class Menu {
 
-    private final Database db;
+    static private final Database db = new Database();
 
     protected Menu() {
-        db = new Database();
+
     }
 
     public int readOption(int optionsQuantiy){
@@ -37,12 +37,33 @@ abstract class Menu {
         return option;
     }
 
-    public String readText(){
+    public float readPrice(){
+        Scanner input = new Scanner(System.in);
+        boolean ok = false;
+        float option = 0.0f;
+        do {
+            try {
+                System.out.println("Introduzca precio");
+                option = Float.parseFloat(input.nextLine());
+                if(option >= 1){
+                    ok = true;
+                } else {
+                    System.out.println("Debe introducir un numero mayor que 1");
+                }
+            } catch (NumberFormatException err){
+                System.out.println("Debe introducir un numero mayor que 1");
+            }
+        } while (!ok);
+        return option;
+    }
+
+    public String readText(String label){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
         String text = "";
         do {
             try{
+                System.out.println(label);
                 text = input.nextLine();
                 if(text.length() > 0){
                     ok = true;

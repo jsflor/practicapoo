@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Pedido {
 
     private final int id;
-    private int price;
+    private float price;
     private final ArrayList<Integer> muebles;
     private int customerId;
     private int responsibleId;
@@ -20,7 +20,7 @@ public class Pedido {
     private ArrayList<String> incidencias;
     private static int count = 0;
 
-    public Pedido(ArrayList<Integer> muebles, int customerId, int responsibleId, int price) {
+    public Pedido(ArrayList<Integer> muebles, int customerId, int responsibleId, float price) {
         this.muebles = muebles;
         this.customerId = customerId;
         this.responsibleId = responsibleId;
@@ -34,11 +34,11 @@ public class Pedido {
         return id;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

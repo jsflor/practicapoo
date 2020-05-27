@@ -8,7 +8,7 @@ package mueble;
  * @version 1.0.0
  */
 public class MesaDormitorio extends Mesa{
-    protected MesaDormitorio(String articleName, int price, Material material) {
+    public MesaDormitorio(String articleName, float price, Material material) {
         super(articleName, price, material);
     }
 }

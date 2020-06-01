@@ -42,42 +42,42 @@ public class MueblesCollection implements MueblesOperations{
     public List<Mueble> getMueblesByType(String filter) {
         List<Mueble> result;
         switch (filter){
-            case "MCCRISTAL":
+            case "MESACAFECRISTAL":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof MesaCafeCristal)
                         .collect(Collectors.toList());
                 break;
-            case "MCMADERA":
+            case "MESACAFEMADERA":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof MesaCafeMadera)
                         .collect(Collectors.toList());
                 break;
-            case "MDORMITORIO":
+            case "MESADORMITORIO":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof MesaDormitorio)
                         .collect(Collectors.toList());
                 break;
-            case "MCOMEDOR":
+            case "MESACOMEDOR":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof MesaComedor)
                         .collect(Collectors.toList());
                 break;
-            case "SPLEGABLE":
+            case "SILLAPLEGABLE":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof SillaPlegable)
                         .collect(Collectors.toList());
                 break;
-            case "SCOCINA":
+            case "SILLACOCINA":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof SillaCocina)
                         .collect(Collectors.toList());
                 break;
-            case "SORUEDAS":
+            case "SILLAOFICINARUEDAS":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof SillaOficinaRuedas)
                         .collect(Collectors.toList());
                 break;
-            case "SOSINRUEDAS":
+            case "SILLAOFICINASINRUEDAS":
                 result = getMuebles().stream()
                         .filter(m -> m instanceof SillaOficinaSinRuedas)
                         .collect(Collectors.toList());

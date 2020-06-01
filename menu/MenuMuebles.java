@@ -27,19 +27,19 @@ public class MenuMuebles extends Menu {
             int optionSelected = readOption(4);
             switch (optionSelected){
                 case 1:
-                    printSpaces(1);
+                    printSeparator();
                     addMueble();
                     break;
                 case 2:
-                    printSpaces(1);
+                    printSeparator();
                     updateMueble();
                     break;
                 case 3:
-                    printSpaces(1);
+                    printSeparator();
                     deleteMueble();
                     break;
                 case 4:
-                    printSpaces(1);
+                    printSeparator();
                     exit = true;
                     break;
             }
@@ -58,10 +58,12 @@ public class MenuMuebles extends Menu {
             switch (opt){
                 case 1:
                     m = displayMesaOpts();
+                    printSeparator();
                     ok = true;
                     break;
                 case 2:
                     m = displaySillaOpts();
+                    printSeparator();
                     ok = true;
                     break;
                 default:
@@ -71,10 +73,63 @@ public class MenuMuebles extends Menu {
 
         printMueble(m);
         getDb().getMuebles().insertOneMueble(m);
+        printSeparator();
     }
 
     void updateMueble(){
-        System.out.println("update");
+        String id;
+        String filter;
+        boolean ok;
+        boolean okId;
+        int type;
+
+        do {
+            System.out.println("Seleccione:");
+            System.out.println("Mesa    (1)");
+            System.out.println("Silla   (2)");
+            int opt = readOption(2);
+            switch (opt){
+                case 1:
+                    type = printMesaOpts();
+                    filter = mapMesaOptionToString(type);
+                    ok = true;
+                    break;
+                case 2:
+                    type = printSillaOpts();
+                    filter = mapSillaOptionToString(type);
+                    ok = true;
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + opt);
+            }
+        } while (!ok);
+
+        okId = false;
+        do {
+            id = readText("Introduzca id del mueble a editar");
+            if(id.length() > 0){
+                okId = true;
+            }
+        } while (!okId);
+
+        List<Mueble> muebles = getDb().getMuebles().getMuebleById(filter, id);
+        if(muebles.size() > 0){
+            Mueble m = muebles.get(0);
+            printSeparator();
+            System.out.println("Estado actual mueble seleccionado");
+            printMueble(m);
+
+            String articleName = readText("Introduzca nombre de articulo");
+            float price = readPrice();
+
+            m.setModelName(articleName);
+            m.setPrice(price);
+
+            printSeparator();
+            System.out.println("Mueble actualizado");
+            printMueble(m);
+        }
+
     }
 
     void deleteMueble(){
@@ -85,12 +140,7 @@ public class MenuMuebles extends Menu {
         boolean ok;
         Mueble mesa;
         do {
-            System.out.println("Seleccione:");
-            System.out.println("Mesa dormitorio     (1)");
-            System.out.println("Mesa comedor        (2)");
-            System.out.println("Mesa cafe cristal   (3)");
-            System.out.println("Mesa cafe madera    (4)");
-            int optionSelected = readOption(4);
+            int optionSelected = printMesaOpts();
 
             String articleName = readText("Introduzca nombre de articulo");
             float price = readPrice();
@@ -124,12 +174,7 @@ public class MenuMuebles extends Menu {
         boolean ok;
         Mueble silla;
         do {
-            System.out.println("Seleccione:");
-            System.out.println("Silla cocina               (3)");
-            System.out.println("Silla plegable             (4)");
-            System.out.println("Silla oficina con ruedas   (1)");
-            System.out.println("Silla oficina sin ruedas   (2)");
-            int optionSelected = readOption(4);
+            int optionSelected = printSillaOpts();
 
             String articleName = readText("Introduzca nombre de articulo");
             float price = readPrice();
@@ -157,6 +202,66 @@ public class MenuMuebles extends Menu {
             }
         } while (!ok);
         return silla;
+    }
+
+    int printMesaOpts(){
+        System.out.println("Seleccione:");
+        System.out.println("Mesa dormitorio     (1)");
+        System.out.println("Mesa comedor        (2)");
+        System.out.println("Mesa cafe cristal   (3)");
+        System.out.println("Mesa cafe madera    (4)");
+        return readOption(4);
+    }
+
+    int printSillaOpts(){
+        System.out.println("Seleccione:");
+        System.out.println("Silla cocina               (3)");
+        System.out.println("Silla plegable             (4)");
+        System.out.println("Silla oficina con ruedas   (1)");
+        System.out.println("Silla oficina sin ruedas   (2)");
+        return readOption(4);
+    }
+
+    String mapMesaOptionToString(int type){
+        String opt;
+        switch (type){
+            case 1:
+                opt = "MESADORMITORIO";
+                break;
+            case 2:
+                opt = "MESACOMEDOR";
+                break;
+            case 3:
+                opt = "MESACAFECRISTAL";
+                break;
+            case 4:
+                opt = "MESACAFEMADERA";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
+        return opt;
+    }
+
+    String mapSillaOptionToString(int type){
+        String opt;
+        switch (type){
+            case 1:
+                opt = "SILLACOCINA";
+                break;
+            case 2:
+                opt = "SILLAPLEGABLE";
+                break;
+            case 3:
+                opt = "SILLAOFICINARUEDAS";
+                break;
+            case 4:
+                opt = "SILLAOFICINASINRUEDAS";
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + type);
+        }
+        return opt;
     }
 
     Material selectMaterial(){
@@ -193,10 +298,12 @@ public class MenuMuebles extends Menu {
     }
 
     void printMueble(Mueble m){
+        System.out.println(" ");
         System.out.println("Id: " + m.getId());
         System.out.println("Tipo: " + m.getClass());
         System.out.println("Modelo: " + m.getModelName());
         System.out.println("Precio: " + m.getPrice());
         System.out.println("Material: " +m.getMaterial());
+        System.out.println(" ");
     }
 }

@@ -24,23 +24,23 @@ public class MenuPrincipal extends Menu {
             int optionSelected = readOption(5);
             switch (optionSelected){
                 case 1:
-                    printSpaces(1);
+                    printSeparator();
                     manageMuebles();
                     break;
                 case 2:
-                    printSpaces(1);
+                    printSeparator();
                     managePersonas();
                     break;
                 case 3:
-                    printSpaces(1);
+                    printSeparator();
                     managePedidos();
                     break;
                 case 4:
-                    printSpaces(1);
+                    printSeparator();
                     search();
                     break;
                 case 5:
-                    printSpaces(1);
+                    printSeparator();
                     exit = true;
                     break;
             }

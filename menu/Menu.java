@@ -77,10 +77,8 @@ abstract class Menu {
         return text;
     }
 
-    public void printSpaces(int qty){
-        for(int i = 0; i < qty; i++){
-            System.out.println("\n");
-        }
+    public void printSeparator(){
+        System.out.println("******************************");
     }
 
     public Database getDb() {

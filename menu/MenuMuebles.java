@@ -22,8 +22,7 @@ public class MenuMuebles extends Menu {
             System.out.println("Gestión muebles. Seleccione opción:");
             System.out.println("Añadir mueble     (1)");
             System.out.println("Actualizar mueble (2)");
-            System.out.println("Borrar mueble     (3)");
-            System.out.println("Salir             (4)");
+            System.out.println("Salir             (3)");
             int optionSelected = readOption(4);
             switch (optionSelected){
                 case 1:
@@ -35,10 +34,6 @@ public class MenuMuebles extends Menu {
                     updateMueble();
                     break;
                 case 3:
-                    printSeparator();
-                    deleteMueble();
-                    break;
-                case 4:
                     printSeparator();
                     exit = true;
                     break;
@@ -130,10 +125,6 @@ public class MenuMuebles extends Menu {
             printMueble(m);
         }
 
-    }
-
-    void deleteMueble(){
-        System.out.println("del");
     }
 
     Mueble displayMesaOpts() {

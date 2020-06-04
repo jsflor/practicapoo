@@ -1,5 +1,7 @@
 package menu;
 
+import mueble.*;
+
 /**
  * Write a description of class Menu here.
  * 
@@ -9,6 +11,7 @@ package menu;
 public class MenuPrincipal extends Menu {
 
     public MenuPrincipal() {
+        addInitialContent();
         init();
     }
 
@@ -52,7 +55,7 @@ public class MenuPrincipal extends Menu {
     }
 
     public void managePersonas(){
-        System.out.println("Gestión personas");
+        new MenuPersonas();
     }
 
     public void managePedidos(){
@@ -61,6 +64,21 @@ public class MenuPrincipal extends Menu {
 
     public void search(){
         System.out.println("Gestión busqueda");
+    }
+
+    public void addInitialContent(){
+        getDb().getMuebles().insertOneMueble(new MesaDormitorio("Mesita de noche", 12.0f, Material.MADERA));
+        getDb().getMuebles().insertOneMueble(new MesaDormitorio("Mesita de noche cristal", 20.0f, Material.CRISTAL));
+        getDb().getMuebles().insertOneMueble(new MesaComedor("Mesa comedor estandar", 54.0f, Material.CRISTAL));
+        getDb().getMuebles().insertOneMueble(new MesaCafeMadera("Mesa cafe de madera estandar", 42.5f));
+        getDb().getMuebles().insertOneMueble(new MesaCafeMadera("Mesa cafe de madera de pino", 72.5f));
+        getDb().getMuebles().insertOneMueble(new MesaCafeCristal("Mesa cafe de cristal", 12.5f));
+        getDb().getMuebles().insertOneMueble(new SillaCocina("Silla cocina madera estandar", 15.0f, Material.MADERA));
+        getDb().getMuebles().insertOneMueble(new SillaCocina("Silla cocina metal estandar", 15.0f, Material.METAL));
+        getDb().getMuebles().insertOneMueble(new SillaPlegable("Silla plegable", 5.0f, Material.MADERA));
+        getDb().getMuebles().insertOneMueble(new SillaOficinaRuedas("Silla oficina acolchada", 35.0f, Material.METAL));
+        getDb().getMuebles().insertOneMueble(new SillaOficinaSinRuedas("Silla oficina estatica", 25.0f, Material.METAL));
+        System.out.println("*********************");
     }
 
 }

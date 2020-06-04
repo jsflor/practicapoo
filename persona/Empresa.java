@@ -9,7 +9,7 @@ package persona;
  */
 public class Empresa extends Cliente {
 
-    protected Empresa(String name, String fiscalId) {
+    public Empresa(String name, String fiscalId) {
         super(name, fiscalId, FiscalIdType.CIF);
     }
 

@@ -8,7 +8,7 @@ package persona;
  * @version 1.0.0
  */
 public class ArtesanoPlantilla extends Artesano {
-    protected ArtesanoPlantilla(String name, String fiscalId) {
+    public ArtesanoPlantilla(String name, String fiscalId) {
         super(name, fiscalId);
     }
 }

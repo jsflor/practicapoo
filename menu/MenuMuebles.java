@@ -23,7 +23,7 @@ public class MenuMuebles extends Menu {
             System.out.println("Añadir mueble     (1)");
             System.out.println("Actualizar mueble (2)");
             System.out.println("Salir             (3)");
-            int optionSelected = readOption(4);
+            int optionSelected = readOption(3);
             switch (optionSelected){
                 case 1:
                     printSeparator();
@@ -123,6 +123,8 @@ public class MenuMuebles extends Menu {
             printSeparator();
             System.out.println("Mueble actualizado");
             printMueble(m);
+        } else {
+            System.out.println("No hemos encontrado muebles con los parametros de busqueda seleccionados");
         }
 
     }
@@ -135,23 +137,24 @@ public class MenuMuebles extends Menu {
 
             String articleName = readText("Introduzca nombre de articulo");
             float price = readPrice();
-            Material m = selectMaterial();
+
+            /*Material m = selectMaterial();*/
 
             switch (optionSelected){
                 case 1:
-                    mesa = new MesaDormitorio(articleName, price, m);
+                    mesa = new MesaDormitorio(articleName, price, selectMaterial());
                     ok = true;
                     break;
                 case 2:
-                    mesa = new MesaComedor(articleName, price, m);
+                    mesa = new MesaComedor(articleName, price, selectMaterial());
                     ok = true;
                     break;
                 case 3:
-                    mesa = new MesaCafeCristal(articleName, price, m);
+                    mesa = new MesaCafeCristal(articleName, price);
                     ok = true;
                     break;
                 case 4:
-                    mesa = new MesaCafeMadera(articleName, price, m);
+                    mesa = new MesaCafeMadera(articleName, price);
                     ok = true;
                     break;
                 default:

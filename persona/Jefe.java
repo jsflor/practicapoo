@@ -9,7 +9,7 @@ package persona;
  */
 public class Jefe extends Empleado {
 
-    protected Jefe(String name, String fiscalId) {
+    public Jefe(String name, String fiscalId) {
         super(name, fiscalId);
     }
 

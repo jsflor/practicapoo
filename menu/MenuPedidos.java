@@ -29,7 +29,11 @@ public class MenuPedidos extends Menu {
             switch (optionSelected) {
                 case 1:
                     printSeparator();
-                    addPedido();
+                    try{
+                        addPedido();
+                    } catch (Exception e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 2:
                     printSeparator();
@@ -39,7 +43,7 @@ public class MenuPedidos extends Menu {
         } while (!exit);
     }
 
-    void addPedido(){
+    void addPedido() throws Exception{
         int qty;
         int customerId;
         int employeeId;
@@ -74,24 +78,44 @@ public class MenuPedidos extends Menu {
         muebles.forEach(m -> m.setOrderId(p.getId()));
     }
 
-    private int checkEmployeeId() {
+    private int checkEmployeeId() throws Exception{
         String employeeId;
-        List<Persona> result;
+        Persona result = null;
+        boolean ok;
         do {
-            employeeId = readText("Indique id del responsable");
-            result  = getDb().getPersonas().getPersonaById("EMPLEADO", employeeId);
-        } while (!(result.size() > 0));
-        return result.get(0).getId();
+            employeeId = readText("Indique id del responsable (para salir 'exit')");
+            if(employeeId.equals("exit")){
+                throw new Exception("Operacion abortada");
+            }
+            try {
+                result  = getDb().getPersonas().getPersonaById("EMPLEADO", employeeId);
+                ok = true;
+            } catch (Exception e) {
+               System.out.println(e.getMessage());
+                ok = false;
+            }
+        } while (!ok);
+        return result.getId();
     }
 
-    private int checkCustomerId() {
+    private int checkCustomerId() throws Exception {
         String customerId;
-        List<Persona> result;
+        Persona result = null;
+        boolean ok;
         do {
             customerId = readText("Indique id del responsable");
-            result  = getDb().getPersonas().getPersonaById("CLIENTE", customerId);
-        } while (!(result.size() > 0));
-        return result.get(0).getId();
+            if(customerId.equals("exit")){
+                throw new Exception("Operacion abortada");
+            }
+            try {
+                result  = getDb().getPersonas().getPersonaById("CLIENTE", customerId);
+                ok = true;
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                ok = false;
+            }
+        } while (!ok);
+        return result.getId();
     }
 
 }

@@ -11,12 +11,7 @@ import java.util.List;
  */
 
 public interface PersonasOperations {
-
-    List<Persona> getAllPersonas(String filter);
-    List<Persona> getPersonaById(String filter, String id);
+    Persona getPersonaById(String filter, String id) throws Exception;
     List<Persona> getPersonasByType(String filter);
     void insertOnePersona(Persona p);
-    void updateOnePersona(Persona p);
-    void deleteOnePersona(String id);
-
 }

@@ -22,12 +22,7 @@ public class PersonasCollection implements PersonasOperations{
     }
 
     @Override
-    public List<Persona> getAllPersonas(String filter) {
-        return getPersonasByType(filter);
-    }
-
-    @Override
-    public List<Persona> getPersonaById(String filter, String id) {
+    public Persona getPersonaById(String filter, String id) throws Exception {
         List<Persona> personasFiltered = getPersonasByType(filter);
         List<Persona> result = new ArrayList<>();
         for (Persona p: personasFiltered){
@@ -35,7 +30,11 @@ public class PersonasCollection implements PersonasOperations{
                 result.add(p);
             }
         }
-        return result;
+        if(result.size() > 0){
+            return result.get(0);
+        } else {
+            throw new Exception("Persona no encontrada");
+        }
     }
 
     @Override
@@ -63,19 +62,6 @@ public class PersonasCollection implements PersonasOperations{
     public void insertOnePersona(Persona p) {
         getPersonas().add(p);
         System.out.println("Añadida nueva persona con id: " + p.getId());
-    }
-
-    @Override
-    public void updateOnePersona(Persona p) {
-        getPersonas().removeIf(pe -> pe.getId() == p.getId());
-        getPersonas().add(p);
-        System.out.println("Actualizada persona con id: " + p.getId());
-    }
-
-    @Override
-    public void deleteOnePersona(String id) {
-        getPersonas().removeIf(p -> id.equals(Integer.toString(p.getId())));
-        System.out.println("Borrada persona con id: " + id);
     }
 
     public List<Persona> getPersonas() {

@@ -83,7 +83,7 @@ abstract class Menu {
         System.out.println("******************************");
     }
 
-    List<Mueble> getMueble(){
+    Mueble getMueble() throws Exception{
         String id;
         String filter;
         boolean ok;

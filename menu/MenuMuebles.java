@@ -2,8 +2,6 @@ package menu;
 
 import mueble.*;
 
-import java.util.List;
-
 /**
  * Write a description of class MenuMuebles here.
  *
@@ -16,7 +14,7 @@ public class MenuMuebles extends Menu {
         init();
     }
 
-    void init(){
+    public void init(){
         boolean exit = false;
         do {
             System.out.println("Gestión muebles. Seleccione opción:");
@@ -47,7 +45,7 @@ public class MenuMuebles extends Menu {
         } while (!exit);
     }
 
-    private void searchMueble() {
+    public void searchMueble() {
         boolean ok = false;
         Mueble m;
         String id = readText("Indique id del mueble");
@@ -63,7 +61,7 @@ public class MenuMuebles extends Menu {
         } while (!ok);
     }
 
-    void addMueble(){
+    public void addMueble(){
         boolean ok;
         Mueble m;
         int opt;
@@ -93,30 +91,31 @@ public class MenuMuebles extends Menu {
         printSeparator();
     }
 
-    void updateMueble(){
-        List<Mueble> muebles = getMueble();
-        if(muebles.size() > 0){
-            Mueble m = muebles.get(0);
-            printSeparator();
-            System.out.println("Estado actual mueble seleccionado");
-            printMueble(m);
-
-            String articleName = readText("Introduzca nombre de articulo");
-            float price = readPrice();
-
-            m.setModelName(articleName);
-            m.setPrice(price);
-
-            printSeparator();
-            System.out.println("Mueble actualizado");
-            printMueble(m);
-        } else {
-            System.out.println("No hemos encontrado muebles con los parametros de busqueda seleccionados");
+    public void updateMueble(){
+        Mueble m = null;
+        try {
+                m  = getMueble();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
+
+        printSeparator();
+        System.out.println("Estado actual mueble seleccionado");
+        printMueble(m);
+
+        String articleName = readText("Introduzca nombre de articulo");
+        float price = readPrice();
+
+        m.setModelName(articleName);
+        m.setPrice(price);
+
+        printSeparator();
+        System.out.println("Mueble actualizado");
+        printMueble(m);
 
     }
 
-    Mueble displayMesaOpts() {
+    public  Mueble displayMesaOpts() {
         boolean ok;
         Mueble mesa;
         do {
@@ -151,7 +150,7 @@ public class MenuMuebles extends Menu {
         return mesa;
     }
 
-    Mueble displaySillaOpts() {
+    public Mueble displaySillaOpts() {
         boolean ok;
         Mueble silla;
         do {

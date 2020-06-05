@@ -22,68 +22,40 @@ public class MueblesCollection implements MueblesOperations{
     }
 
     @Override
-    public List<Mueble> getAllMuebles(String filter) {
-        return getMueblesByType(filter);
-    }
-
-    @Override
-    public List<Mueble> getMuebleById(String filter, String id) {
+    public Mueble getMuebleById(String filter, String id) throws Exception {
        List<Mueble> mueblesFiltered = getMueblesByType(filter);
         List<Mueble> result = new ArrayList<>();
+
        for (Mueble m: mueblesFiltered){
             if(id.equals(Integer.toString(m.getId()))){
                 result.add(m);
             }
        }
-       return result;
+       if(result.size() > 0){
+           return result.get(0);
+       } else {
+           throw new Exception("No se han encontrado resultados");
+       }
     }
 
     @Override
     public List<Mueble> getMueblesByType(String filter) {
         List<Mueble> result;
         switch (filter){
-            case "MESACAFECRISTAL":
+            case "MESA":
                 result = getMuebles().stream()
-                        .filter(m -> m instanceof MesaCafeCristal)
+                        .filter(m -> m instanceof MesaCafeCristal || m instanceof MesaCafeMadera
+                            || m instanceof MesaDormitorio || m instanceof MesaComedor)
                         .collect(Collectors.toList());
                 break;
-            case "MESACAFEMADERA":
+            case "SILLA":
                 result = getMuebles().stream()
-                        .filter(m -> m instanceof MesaCafeMadera)
-                        .collect(Collectors.toList());
-                break;
-            case "MESADORMITORIO":
-                result = getMuebles().stream()
-                        .filter(m -> m instanceof MesaDormitorio)
-                        .collect(Collectors.toList());
-                break;
-            case "MESACOMEDOR":
-                result = getMuebles().stream()
-                        .filter(m -> m instanceof MesaComedor)
-                        .collect(Collectors.toList());
-                break;
-            case "SILLAPLEGABLE":
-                result = getMuebles().stream()
-                        .filter(m -> m instanceof SillaPlegable)
-                        .collect(Collectors.toList());
-                break;
-            case "SILLACOCINA":
-                result = getMuebles().stream()
-                        .filter(m -> m instanceof SillaCocina)
-                        .collect(Collectors.toList());
-                break;
-            case "SILLAOFICINARUEDAS":
-                result = getMuebles().stream()
-                        .filter(m -> m instanceof SillaOficinaRuedas)
-                        .collect(Collectors.toList());
-                break;
-            case "SILLAOFICINASINRUEDAS":
-                result = getMuebles().stream()
-                        .filter(m -> m instanceof SillaOficinaSinRuedas)
+                        .filter(m -> m instanceof SillaPlegable || m instanceof SillaCocina
+                                || m instanceof SillaOficinaRuedas || m instanceof SillaOficinaSinRuedas)
                         .collect(Collectors.toList());
                 break;
             default:
-                result = getMuebles();
+                result = new ArrayList<>();
         }
         return result;
     }
@@ -92,19 +64,6 @@ public class MueblesCollection implements MueblesOperations{
     public void insertOneMueble(Mueble m) {
         getMuebles().add(m);
         System.out.println("Añadido nuevo mueble con id: " + m.getId());
-    }
-
-    @Override
-    public void updateOneMueble(Mueble m) {
-        getMuebles().removeIf(mu -> mu.getId() == m.getId());
-        getMuebles().add(m);
-        System.out.println("Actualizado mueble con id: " + m.getId());
-    }
-
-    @Override
-    public void deleteOneMueble(String id) {
-        getMuebles().removeIf(m -> id.equals(Integer.toString(m.getId())));
-        System.out.println("Borrado mueble con id: " + id);
     }
 
     public List<Mueble> getMuebles() {

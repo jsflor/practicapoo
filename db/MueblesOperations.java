@@ -11,12 +11,7 @@ import java.util.List;
  */
 
 public interface MueblesOperations {
-
-    List<Mueble> getAllMuebles(String filter);
-    List<Mueble> getMuebleById(String filter, String id);
+    Mueble getMuebleById(String filter, String id) throws Exception;
     List<Mueble> getMueblesByType(String filter);
     void insertOneMueble(Mueble m);
-    void updateOneMueble(Mueble m);
-    void deleteOneMueble(String id);
-
 }

@@ -53,13 +53,14 @@ public class MenuPedidos extends Menu {
             System.out.println("Mueble #" + i);
             boolean ok;
             do {
-                List<Mueble> m = getMueble();
-                if(m.size() > 0){
-                    muebles.add(m.get(0));
-                    price += m.get(0).getPrice();
+                try{
+                    Mueble m;
+                    m = getMueble();
+                    muebles.add(m);
+                    price += m.getPrice();
                     ok = true;
-                } else {
-                    System.out.println("Mueble no encontrado");
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
                     ok = false;
                 }
             } while (!ok);

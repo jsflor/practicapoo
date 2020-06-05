@@ -20,38 +20,24 @@ public class PedidosCollection implements PedidosOperations {
     }
 
     @Override
-    public List<Pedido> getAllPedidos(String filter) {
-        return getPedidos();
-    }
-
-    @Override
-    public Pedido getPedidoById(String id) {
+    public Pedido getPedidoById(String id) throws Exception {
         List<Pedido> result = new ArrayList<>();
         for (Pedido p: getPedidos()){
             if(id.equals(Integer.toString(p.getId()))){
                 result.add(p);
             }
         }
-        return result.size() > 0 ? result.get(0) : null;
+        if(result.size() > 0){
+            return result.get(0);
+        } else {
+            throw new Exception("Pedido no encontrado");
+        }
     }
 
     @Override
     public void insertOnePedido(Pedido p) {
         getPedidos().add(p);
         System.out.println("Añadido nuevo pedido con id: " + p.getId());
-    }
-
-    @Override
-    public void updateOnePedido(Pedido p) {
-        getPedidos().removeIf(pe -> pe.getId() == p.getId());
-        getPedidos().add(p);
-        System.out.println("Actualizado pedido con id: " + p.getId());
-    }
-
-    @Override
-    public void deleteOnePedido(String id) {
-        getPedidos().removeIf(p -> id.equals(Integer.toString(p.getId())));
-        System.out.println("Borrado pedido con id: " + id);
     }
 
     public List<Pedido> getPedidos() {

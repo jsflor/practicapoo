@@ -1,7 +1,6 @@
 package db;
 
 import pedido.Pedido;
-import java.util.List;
 
 /**
  * Write a description of interface PedidosOperations here.
@@ -11,11 +10,7 @@ import java.util.List;
  */
 
 public interface PedidosOperations {
-
-    List<Pedido> getAllPedidos(String filter);
-    Pedido getPedidoById(String id);
+    Pedido getPedidoById(String id) throws Exception;
     void insertOnePedido(Pedido p);
-    void updateOnePedido(Pedido p);
-    void deleteOnePedido(String id);
 
 }

@@ -22,8 +22,9 @@ public class MenuMuebles extends Menu {
             System.out.println("Gestión muebles. Seleccione opción:");
             System.out.println("Añadir mueble     (1)");
             System.out.println("Actualizar mueble (2)");
-            System.out.println("Salir             (3)");
-            int optionSelected = readOption(3);
+            System.out.println("Buscar mueble     (3)");
+            System.out.println("Salir             (4)");
+            int optionSelected = readOption(4);
             switch (optionSelected){
                 case 1:
                     printSeparator();
@@ -35,10 +36,31 @@ public class MenuMuebles extends Menu {
                     break;
                 case 3:
                     printSeparator();
+                    searchMueble();
+                    exit = true;
+                    break;
+                case 4:
+                    printSeparator();
                     exit = true;
                     break;
             }
         } while (!exit);
+    }
+
+    private void searchMueble() {
+        boolean ok = false;
+        Mueble m;
+        String id = readText("Indique id del mueble");
+        do {
+            System.out.println("Seleccione:");
+            System.out.println("Mesa     (1)");
+            System.out.println("Silla    (2)");
+            int optionSelected = readOption(4);
+            switch (optionSelected){
+                case 1:
+                case 2:
+            }
+        } while (!ok);
     }
 
     void addMueble(){
@@ -72,42 +94,7 @@ public class MenuMuebles extends Menu {
     }
 
     void updateMueble(){
-        String id;
-        String filter;
-        boolean ok;
-        boolean okId;
-        int type;
-
-        do {
-            System.out.println("Seleccione:");
-            System.out.println("Mesa    (1)");
-            System.out.println("Silla   (2)");
-            int opt = readOption(2);
-            switch (opt){
-                case 1:
-                    type = printMesaOpts();
-                    filter = mapMesaOptionToString(type);
-                    ok = true;
-                    break;
-                case 2:
-                    type = printSillaOpts();
-                    filter = mapSillaOptionToString(type);
-                    ok = true;
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + opt);
-            }
-        } while (!ok);
-
-        okId = false;
-        do {
-            id = readText("Introduzca id del mueble a editar");
-            if(id.length() > 0){
-                okId = true;
-            }
-        } while (!okId);
-
-        List<Mueble> muebles = getDb().getMuebles().getMuebleById(filter, id);
+        List<Mueble> muebles = getMueble();
         if(muebles.size() > 0){
             Mueble m = muebles.get(0);
             printSeparator();
@@ -196,108 +183,5 @@ public class MenuMuebles extends Menu {
             }
         } while (!ok);
         return silla;
-    }
-
-    int printMesaOpts(){
-        System.out.println("Seleccione:");
-        System.out.println("Mesa dormitorio     (1)");
-        System.out.println("Mesa comedor        (2)");
-        System.out.println("Mesa cafe cristal   (3)");
-        System.out.println("Mesa cafe madera    (4)");
-        return readOption(4);
-    }
-
-    int printSillaOpts(){
-        System.out.println("Seleccione:");
-        System.out.println("Silla cocina               (3)");
-        System.out.println("Silla plegable             (4)");
-        System.out.println("Silla oficina con ruedas   (1)");
-        System.out.println("Silla oficina sin ruedas   (2)");
-        return readOption(4);
-    }
-
-    String mapMesaOptionToString(int type){
-        String opt;
-        switch (type){
-            case 1:
-                opt = "MESADORMITORIO";
-                break;
-            case 2:
-                opt = "MESACOMEDOR";
-                break;
-            case 3:
-                opt = "MESACAFECRISTAL";
-                break;
-            case 4:
-                opt = "MESACAFEMADERA";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
-        return opt;
-    }
-
-    String mapSillaOptionToString(int type){
-        String opt;
-        switch (type){
-            case 1:
-                opt = "SILLACOCINA";
-                break;
-            case 2:
-                opt = "SILLAPLEGABLE";
-                break;
-            case 3:
-                opt = "SILLAOFICINARUEDAS";
-                break;
-            case 4:
-                opt = "SILLAOFICINASINRUEDAS";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
-        return opt;
-    }
-
-    Material selectMaterial(){
-        boolean ok = false;
-        Material m = Material.MADERA;
-        do {
-            System.out.println("Seleccione material:");
-            System.out.println("Madera      (1)");
-            System.out.println("Cristal     (2)");
-            System.out.println("Plastico    (3)");
-            System.out.println("Metal       (4)");
-            int optionSelected = readOption(4);
-
-            switch (optionSelected){
-                case 1:
-                    m = Material.MADERA;
-                    ok = true;
-                    break;
-                case 2:
-                    m = Material.CRISTAL;
-                    ok = true;
-                    break;
-                case 3:
-                    m = Material.PLASTICO;
-                    ok = true;
-                    break;
-                case 4:
-                    m = Material.METAL;
-                    ok = true;
-                    break;
-            }
-        } while (!ok);
-        return m;
-    }
-
-    void printMueble(Mueble m){
-        System.out.println(" ");
-        System.out.println("Id: " + m.getId());
-        System.out.println("Tipo: " + m.getClass());
-        System.out.println("Modelo: " + m.getModelName());
-        System.out.println("Precio: " + m.getPrice());
-        System.out.println("Material: " +m.getMaterial());
-        System.out.println(" ");
     }
 }

@@ -1,6 +1,8 @@
 package pedido;
 
 
+import mueble.Mueble;
+
 import java.util.ArrayList;
 
 /**
@@ -13,14 +15,14 @@ public class Pedido {
 
     private final int id;
     private float price;
-    private final ArrayList<Integer> muebles;
+    private final ArrayList<Mueble> muebles;
     private int customerId;
     private int responsibleId;
     private OrderState estadoPedido;
     private ArrayList<String> incidencias;
     private static int count = 0;
 
-    public Pedido(ArrayList<Integer> muebles, int customerId, int responsibleId, float price) {
+    public Pedido(ArrayList<Mueble> muebles, int customerId, int responsibleId, float price) {
         this.muebles = muebles;
         this.customerId = customerId;
         this.responsibleId = responsibleId;
@@ -42,7 +44,7 @@ public class Pedido {
         this.price = price;
     }
 
-    public ArrayList<Integer> getMuebles() {
+    public ArrayList<Mueble> getMuebles() {
         return muebles;
     }
 

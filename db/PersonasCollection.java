@@ -42,38 +42,19 @@ public class PersonasCollection implements PersonasOperations{
     public List<Persona> getPersonasByType(String filter) {
         List<Persona> result;
         switch (filter){
-            case "JEFE":
+            case "CLIENTE":
                 result = getPersonas().stream()
-                        .filter(m -> m instanceof Jefe)
+                        .filter(m -> m instanceof Jefe || m instanceof  Comercial
+                        || m instanceof ArtesanoHora || m instanceof ArtesanoPlantilla)
                         .collect(Collectors.toList());
                 break;
-            case "COMERCIAL":
+            case "EMPLEADO":
                 result = getPersonas().stream()
-                        .filter(m -> m instanceof Comercial)
-                        .collect(Collectors.toList());
-                break;
-            case "AHORA":
-                result = getPersonas().stream()
-                        .filter(m -> m instanceof ArtesanoHora)
-                        .collect(Collectors.toList());
-                break;
-            case "APLANTILLA":
-                result = getPersonas().stream()
-                        .filter(m -> m instanceof ArtesanoPlantilla)
-                        .collect(Collectors.toList());
-                break;
-            case "PARTICULAR":
-                result = getPersonas().stream()
-                        .filter(m -> m instanceof Particular)
-                        .collect(Collectors.toList());
-                break;
-            case "EMPRESA":
-                result = getPersonas().stream()
-                        .filter(m -> m instanceof Empresa)
+                        .filter(m -> m instanceof Particular || m instanceof Empresa)
                         .collect(Collectors.toList());
                 break;
             default:
-                result = getPersonas();
+                result = new ArrayList<>();
         }
         return result;
     }

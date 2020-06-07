@@ -2,7 +2,7 @@ package persona;
 
 
 /**
- * Write a description of class Empleado here.
+ * Abstract class Empleado.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
@@ -24,6 +24,7 @@ public abstract class Empleado extends Persona {
         System.out.println("Nombre :" + getName());
         System.out.println("Id empleado : " + getId());
         printFiscalData();
+        printOrders();
         printAddress();
     }
 

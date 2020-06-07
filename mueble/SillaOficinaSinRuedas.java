@@ -2,7 +2,7 @@ package mueble;
 
 
 /**
- * Write a description of class SillaOficinaSinRuedas here.
+ * Class SillaOficinaSinRuedas.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

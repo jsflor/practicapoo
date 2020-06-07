@@ -4,18 +4,24 @@ import mueble.*;
 import persona.*;
 
 /**
- * Write a description of class Menu here.
+ * Class MenuPrincipal is a wrapper for all management actions.
  * 
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
  */
 public class MenuPrincipal extends Menu {
 
+    /**
+     * class constructor
+     */
     public MenuPrincipal() {
         addInitialContent();
         init();
     }
 
+    /**
+     * initialize option selector
+     */
     private void init() {
         boolean exit = false;
         do {
@@ -46,18 +52,30 @@ public class MenuPrincipal extends Menu {
         } while (!exit);
     }
 
+    /**
+     * Muebles's management
+     */
     private void manageMuebles(){
         new MenuMuebles();
     }
 
+    /**
+     * Personas' management
+     */
     private void managePersonas(){
         new MenuPersonas();
     }
 
+    /**
+     * Pedido's management
+     */
     private void managePedidos(){
         new MenuPedidos();
     }
 
+    /**
+     * initial test content
+     */
     private void addInitialContent(){
         System.out.println("**********MESAS************");
         getDb().getMuebles().insertOneMueble(new MesaDormitorio("Mesita de noche", 12.0f, Material.MADERA));

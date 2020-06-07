@@ -7,17 +7,23 @@ import persona.*;
 import java.util.ArrayList;
 
 /**
- * Write a description of class MenuPedidos here.
+ * Class MenuPedidos contains Pedidos's management actions.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
  */
 public class MenuPedidos extends Menu {
 
+    /**
+     * class constructor
+     */
     public MenuPedidos() {
         init();
     }
 
+    /**
+     * initialize option selector
+     */
     private void init() {
         boolean exit = false;
         do {
@@ -43,6 +49,9 @@ public class MenuPedidos extends Menu {
         } while (!exit);
     }
 
+    /**
+     * search Pedido action
+     */
     private void searchPedido() {
         boolean ok;
         do {
@@ -60,6 +69,9 @@ public class MenuPedidos extends Menu {
         } while (!ok);
     }
 
+    /**
+     * add Pedido action
+     */
     private void addPedido(){
         int qty;
         int customerId;
@@ -91,6 +103,12 @@ public class MenuPedidos extends Menu {
         employeeId = checkEmployeeId();
 
         Pedido p = new Pedido(muebles, customerId, employeeId, price);
+        try{
+            getDb().getPersonas().getPersonaById("CLIENTE", String.valueOf(customerId)).getPedidos().add(p.getId());
+            getDb().getPersonas().getPersonaById("EMPLEADO", String.valueOf(customerId)).getPedidos().add(p.getId());
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         getDb().getPedidos().insertOnePedido(p);
         muebles.forEach(m -> {
             m.setOrderId(p.getId());
@@ -101,6 +119,9 @@ public class MenuPedidos extends Menu {
         printSeparator();
     }
 
+    /**
+     * @return Empleado Id
+     */
     private int checkEmployeeId(){
         String employeeId;
         Persona result = null;
@@ -118,6 +139,9 @@ public class MenuPedidos extends Menu {
         return result.getId();
     }
 
+    /**
+     * @return Cliente Id
+     */
     private int checkCustomerId() {
         String customerId;
         Persona result = null;

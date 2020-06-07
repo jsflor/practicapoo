@@ -2,7 +2,7 @@ package persona;
 
 
 /**
- * Write a description of class ArtesanoHora here.
+ * Class ArtesanoHora.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

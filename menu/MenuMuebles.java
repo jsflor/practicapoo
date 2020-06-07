@@ -3,17 +3,23 @@ package menu;
 import mueble.*;
 
 /**
- * Write a description of class MenuMuebles here.
+ * Class MenuMuebles contains Mueble's management actions.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
  */
 public class MenuMuebles extends Menu {
 
+    /**
+     * class constructor
+     */
     public MenuMuebles(){
         init();
     }
 
+    /**
+     * initialize option selector
+     */
     private void init(){
         boolean exit = false;
         do {
@@ -44,6 +50,9 @@ public class MenuMuebles extends Menu {
         } while (!exit);
     }
 
+    /**
+     * search Mueble action
+     */
     private void searchMueble() {
         Mueble m = null;
         try {
@@ -56,6 +65,9 @@ public class MenuMuebles extends Menu {
         }
     }
 
+    /**
+     * add Mueble action
+     */
     private void addMueble(){
         boolean ok;
         Mueble m = null;
@@ -87,6 +99,9 @@ public class MenuMuebles extends Menu {
         printSeparator();
     }
 
+    /**
+     * update Mueble action
+     */
     private void updateMueble(){
         Mueble m = null;
         try {
@@ -112,6 +127,9 @@ public class MenuMuebles extends Menu {
         }
     }
 
+    /**
+     * @return  new Mueble created (Mesa)
+     */
     private  Mueble displayMesaOpts() {
         boolean ok;
         Mueble mesa = null;
@@ -148,6 +166,9 @@ public class MenuMuebles extends Menu {
         return mesa;
     }
 
+    /**
+     * @return new Mueble created (Silla)
+     */
     private Mueble displaySillaOpts() {
         boolean ok;
         Mueble silla = null;

@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Write a description of class PersonasCollection here.
- * 
+ * Class PersonasCollection with implementation of Personas operations.
+ *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
  */
@@ -17,6 +17,9 @@ public class PersonasCollection implements PersonasOperations{
 
     private List<Persona> personas;
 
+    /**
+     * class constructor
+     */
     public PersonasCollection() {
         personas = new ArrayList<>();
     }
@@ -64,10 +67,16 @@ public class PersonasCollection implements PersonasOperations{
         System.out.println("Añadida nueva persona con id: " + p.getId());
     }
 
+    /**
+     * @return personas
+     */
     public List<Persona> getPersonas() {
         return personas;
     }
 
+    /**
+     * @param personas to set
+     */
     public void setPersonas(List<Persona> personas) {
         this.personas = personas;
     }

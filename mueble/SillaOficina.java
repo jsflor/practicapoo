@@ -2,7 +2,7 @@ package mueble;
 
 
 /**
- * Write a description of class SillaOficina here.
+ * Class SillaOficina.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

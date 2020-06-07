@@ -2,7 +2,7 @@ package persona;
 
 
 /**
- * Write a description of class Particular here.
+ * Class Particular.
  * 
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
@@ -19,6 +19,7 @@ public class Particular extends Cliente {
         System.out.println("Nombre cliente:" + getName());
         System.out.println("Id cliente : " + getId());
         printFiscalData();
+        printOrders();
         printAddress();
     }
 }

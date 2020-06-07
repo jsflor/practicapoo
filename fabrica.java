@@ -1,7 +1,7 @@
 import menu.MenuPrincipal;
 
 /**
- * Write a description of class fabrica here.
+ *  Furniture Factory management system.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

@@ -2,7 +2,7 @@ package persona;
 
 
 /**
- * Write a description of class Cliente here.
+ * Abstract class Cliente.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

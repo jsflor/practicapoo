@@ -5,7 +5,7 @@ import mueble.*;
 import java.util.Scanner;
 
 /**
- * Write a description of class Menu here.
+ * Abstract class Menu with common actions in menu package.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
@@ -14,10 +14,17 @@ abstract class Menu {
 
     static private final Database db = new Database();
 
+    /**
+     * class constructor
+     */
     protected Menu() {
 
     }
 
+    /**
+     * @param optionsQuantiy options quantity
+     * @return option selected
+     */
     protected int readOption(int optionsQuantiy){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
@@ -37,6 +44,9 @@ abstract class Menu {
         return option;
     }
 
+    /**
+     * @return input price
+     */
     protected float readPrice(){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
@@ -57,6 +67,10 @@ abstract class Menu {
         return option;
     }
 
+    /**
+     * @param label info text to print
+     * @return input text
+     */
     protected String readText(String label){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
@@ -77,10 +91,17 @@ abstract class Menu {
         return text;
     }
 
+    /**
+     * prints asterisk separator
+     */
     protected void printSeparator(){
         System.out.println("******************************");
     }
 
+    /**
+     * @return Mueble found
+     * @throws Exception if Mueble not found
+     */
     protected Mueble getMueble() throws Exception{
         String id;
         String filter;
@@ -117,6 +138,9 @@ abstract class Menu {
         return getDb().getMuebles().getMuebleById(filter, id);
     }
 
+    /**
+     * @return mesa option selected
+     */
     protected int printMesaOpts(){
         System.out.println("Seleccione:");
         System.out.println("Mesa dormitorio     (1)");
@@ -126,6 +150,9 @@ abstract class Menu {
         return readOption(4);
     }
 
+    /**
+     * @return silla option selected
+     */
     protected int printSillaOpts(){
         System.out.println("Seleccione:");
         System.out.println("Silla cocina               (1)");
@@ -135,6 +162,9 @@ abstract class Menu {
         return readOption(4);
     }
 
+    /**
+     * @return material selected
+     */
     protected Material selectMaterial(){
         boolean ok = false;
         Material m = Material.MADERA;
@@ -168,6 +198,9 @@ abstract class Menu {
         return m;
     }
 
+    /**
+     * @return db
+     */
     protected Database getDb() {
         return db;
     }

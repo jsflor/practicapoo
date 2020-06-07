@@ -2,7 +2,7 @@ package persona;
 
 
 /**
- * Enumeration class FiscalIdType - write a description of the enum class here
+ * Enumeration class FiscalIdType - types of fiscal id
  * 
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

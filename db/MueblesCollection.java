@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Write a description of class MueblesCollection here.
+ * Class MueblesCollection with implementation of Muebles operations.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
@@ -17,6 +17,9 @@ public class MueblesCollection implements MueblesOperations{
 
     private List<Mueble> muebles;
 
+    /**
+     * class constructor
+     */
     public MueblesCollection() {
         muebles = new ArrayList<>();
     }
@@ -66,10 +69,16 @@ public class MueblesCollection implements MueblesOperations{
         System.out.println("Añadido nuevo mueble con id: " + m.getId());
     }
 
+    /**
+     * @return muebles
+     */
     public List<Mueble> getMuebles() {
         return muebles;
     }
 
+    /**
+     * @param muebles to set
+     */
     public void setMuebles(List<Mueble> muebles) {
         this.muebles = muebles;
     }

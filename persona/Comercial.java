@@ -2,7 +2,7 @@ package persona;
 
 
 /**
- * Write a description of class Comercial here.
+ * Class Comercial.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

@@ -2,7 +2,7 @@ package mueble;
 
 
 /**
- * Enumeration class Material - write a description of the enum class here
+ * Enumeration class Material - types of Mueble material
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

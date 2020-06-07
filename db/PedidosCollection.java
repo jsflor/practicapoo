@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class PedidosCollection here.
+ * Class PedidosCollection with implementation of Pedidos operations.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
@@ -15,6 +15,9 @@ public class PedidosCollection implements PedidosOperations {
 
     private List<Pedido> pedidos;
 
+    /**
+     * class constructor
+     */
     public PedidosCollection() {
         pedidos = new ArrayList<>();
     }
@@ -40,10 +43,16 @@ public class PedidosCollection implements PedidosOperations {
         System.out.println("Añadido nuevo pedido con id: " + p.getId());
     }
 
+    /**
+     * @return pedidos
+     */
     public List<Pedido> getPedidos() {
         return pedidos;
     }
 
+    /**
+     * @param pedidos to set
+     */
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
     }

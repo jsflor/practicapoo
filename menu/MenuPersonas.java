@@ -3,17 +3,23 @@ package menu;
 import persona.*;
 
 /**
- * Write a description of class MenuMPersonas here.
+ * Class MenuPersonas contains Personas' management actions.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0
  */
 public class MenuPersonas extends Menu {
 
+    /**
+     * class constructor
+     */
     public MenuPersonas(){
         init();
     }
 
+    /**
+     * initialize option selector
+     */
     private void init(){
         boolean exit = false;
         do {
@@ -44,6 +50,9 @@ public class MenuPersonas extends Menu {
         } while (!exit);
     }
 
+    /**
+     * search Persona action
+     */
     private void searchPersona() {
         boolean ok;
         Persona p = null;
@@ -77,6 +86,9 @@ public class MenuPersonas extends Menu {
         } while (!ok);
     }
 
+    /**
+     * add Empleado action
+     */
     private void addEmpleado(){
         boolean ok;
         Persona p = null;
@@ -116,12 +128,13 @@ public class MenuPersonas extends Menu {
         } while (!ok);
 
         p.printData();
-        p.printFiscalData();
-        p.printAddress();
         getDb().getPersonas().insertOnePersona(p);
         printSeparator();
     }
 
+    /**
+     * add Cliente action
+     */
     private void addCliente(){
         boolean ok;
         Persona p = null;
@@ -154,6 +167,10 @@ public class MenuPersonas extends Menu {
         printSeparator();
     }
 
+    /**
+     * @param type of new Persona to be created (Empleado)
+     * @return new Persona instance
+     */
     private Persona displayEmpleadoOpts(int type){
         boolean ok;
         Persona p = null;
@@ -187,6 +204,10 @@ public class MenuPersonas extends Menu {
         return p;
     }
 
+    /**
+     * @param type of new Persona to be created (Cliente)
+     * @return new Persona instance
+     */
     private Persona displayClienteOpts(int type){
         boolean ok;
         Persona p = null;
@@ -212,6 +233,9 @@ public class MenuPersonas extends Menu {
         return p;
     }
 
+    /**
+     * @param p Persona instance
+     */
     private void addressOpts(Persona p){
         boolean ok;
         do {
@@ -235,6 +259,9 @@ public class MenuPersonas extends Menu {
         } while (!ok);
     }
 
+    /**
+     * @return new Address object
+     */
     private Address readAddress(){
         String street = readText("Calle");
         String city = readText("Ciudad");

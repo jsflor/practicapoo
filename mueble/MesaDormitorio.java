@@ -2,7 +2,7 @@ package mueble;
 
 
 /**
- * Write a description of class MesaDormitorio here.
+ * Class MesaDormitorio.
  *
  * @author Juan Sebastian Flor Usma
  * @version 1.0.0

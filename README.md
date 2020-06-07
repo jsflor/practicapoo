@@ -1,4 +1,4 @@
-#Descripción de la Práctica
+# Descripción de la Práctica
 La práctica del presente curso va a consistir en diseñar e implementar un sistema integrado de gestión de
 una fábrica artesanal de muebles. Hace años el responsable de una fábrica no haría más que apuntar en un
 libro una breve descripción del pedido de un cliente, con los muebles que quiere comprar y las características
@@ -52,7 +52,7 @@ Para cada uno de los niveles se van a indicar unos requisitos mínimos de cumpli
 que para cualquier otro detalle de diseño que no se encuentre descrito expresamente en lo indicado en este
 enunciado, el alumno tiene libertad para tomar cuantas decisiones considere oportunas.
 Para obtener la nota mínima para aprobar hay que desarrollar los primeros dos niveles de la práctica.
-###Nivel 1 - Puntuación total máxima a obtener: 3 puntos.
+### Nivel 1 - Puntuación total máxima a obtener: 3 puntos.
 Lo que se pretende que el alumno desarrolle en este nivel son las relaciones de clase, herencia y demás que
 van asociadas al desarrollo de la práctica. Así, se pide realizar las siguientes tareas:
 - Planteamiento del problema: actores participantes, relaciones entre actores, funcionalidad a cumplir por
@@ -63,7 +63,7 @@ identificar diferentes jerarquías de clases, etc.
 correspondientes ficheros para BlueJ que implementen el segundo.
 Es necesario contemplar dos jerarquías de herencia que incluyan las características necesarias para poder
 diferenciar su posición en cada jerarquía: una para los muebles y otra para las personas.
-###Nivel 2 - Puntuación total máxima a obtener: 7 puntos.  
+### Nivel 2 - Puntuación total máxima a obtener: 7 puntos.  
 Los alumnos que implementen este nivel de finalización de la práctica recibirán una puntuación máxima de
 7 puntos. Sólo se podrá optar a este Nivel si se ha implementado satisfactoriamente y en su totalidad los
 requerimientos especificados en el Nivel 1. Lo que se pretende que el alumno desarrolle en este nivel es la
@@ -73,7 +73,7 @@ De este modo, el sistema deberá permitir lo siguiente:
 - Dar de alta a empleados y clientes en el sistema con sus datos personales.
 - Dar de alta un nuevo pedido de muebles con los datos del cliente correspondiente.
 - Realizar búsquedas sencillas sobre los empleados, clientes y pedidos.
-###Nivel 3 - Puntuación total máxima a obtener: 10 puntos.  
+### Nivel 3 - Puntuación total máxima a obtener: 10 puntos.  
 Los alumnos que implementen este nivel de finalización de la práctica recibirán una puntuación máxima de
 10 puntos. Sólo se podrá optar a este Nivel si se han implementado satisfactoriamente y en su totalidad los
 requerimientos especificados en el Nivel 2. Lo que se pretende es que el alumno desarrolle en este nivel la

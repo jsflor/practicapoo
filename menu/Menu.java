@@ -2,8 +2,6 @@ package menu;
 
 import db.Database;
 import mueble.*;
-
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -88,7 +86,6 @@ abstract class Menu {
         String filter;
         boolean ok;
         boolean okId;
-        int type;
 
         do {
             System.out.println("Seleccione:");
@@ -97,13 +94,11 @@ abstract class Menu {
             int opt = readOption(2);
             switch (opt){
                 case 1:
-                    type = printMesaOpts();
-                    filter = mapMesaOptionToString(type);
+                    filter = "MESA";
                     ok = true;
                     break;
                 case 2:
-                    type = printSillaOpts();
-                    filter = mapSillaOptionToString(type);
+                    filter = "SILLA";
                     ok = true;
                     break;
                 default:
@@ -113,7 +108,7 @@ abstract class Menu {
 
         okId = false;
         do {
-            id = readText("Introduzca id del mueble a editar");
+            id = readText("Introduzca id del mueble");
             if(id.length() > 0){
                 okId = true;
             }
@@ -133,53 +128,11 @@ abstract class Menu {
 
     int printSillaOpts(){
         System.out.println("Seleccione:");
-        System.out.println("Silla cocina               (3)");
-        System.out.println("Silla plegable             (4)");
-        System.out.println("Silla oficina con ruedas   (1)");
-        System.out.println("Silla oficina sin ruedas   (2)");
+        System.out.println("Silla cocina               (1)");
+        System.out.println("Silla plegable             (2)");
+        System.out.println("Silla oficina con ruedas   (3)");
+        System.out.println("Silla oficina sin ruedas   (4)");
         return readOption(4);
-    }
-
-    String mapMesaOptionToString(int type){
-        String opt;
-        switch (type){
-            case 1:
-                opt = "MESADORMITORIO";
-                break;
-            case 2:
-                opt = "MESACOMEDOR";
-                break;
-            case 3:
-                opt = "MESACAFECRISTAL";
-                break;
-            case 4:
-                opt = "MESACAFEMADERA";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
-        return opt;
-    }
-
-    String mapSillaOptionToString(int type){
-        String opt;
-        switch (type){
-            case 1:
-                opt = "SILLACOCINA";
-                break;
-            case 2:
-                opt = "SILLAPLEGABLE";
-                break;
-            case 3:
-                opt = "SILLAOFICINARUEDAS";
-                break;
-            case 4:
-                opt = "SILLAOFICINASINRUEDAS";
-                break;
-            default:
-                throw new IllegalStateException("Unexpected value: " + type);
-        }
-        return opt;
     }
 
     Material selectMaterial(){
@@ -213,16 +166,6 @@ abstract class Menu {
             }
         } while (!ok);
         return m;
-    }
-
-    void printMueble(Mueble m){
-        System.out.println(" ");
-        System.out.println("Id: " + m.getId());
-        System.out.println("Tipo: " + m.getClass());
-        System.out.println("Modelo: " + m.getModelName());
-        System.out.println("Precio: " + m.getPrice());
-        System.out.println("Material: " +m.getMaterial());
-        System.out.println(" ");
     }
 
     public Database getDb() {

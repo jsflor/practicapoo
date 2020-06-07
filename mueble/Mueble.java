@@ -29,19 +29,20 @@ public abstract class Mueble{
     public void printFeatures(){
         System.out.println("Modelo : " + getModelName());
         System.out.println("Precio : " + getPrice());
-        printMaterial();
+        printMaterial(getMaterial());
         if(belongsToOrder()){
             System.out.println("Orden id : " + getOrderId());
         }
     }
 
-    public void printMaterial(){
+    public void printMaterial(Material material){
         switch (material){
             case CRISTAL:
                 System.out.println("Material: Cristal");
                 break;
             case MADERA:
                 System.out.println("Material: Madera");
+                break;
             case PLASTICO:
                 System.out.println("Material: Plastico");
                 break;

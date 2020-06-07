@@ -89,6 +89,9 @@ public class MenuPedidos extends Menu {
                 try{
                     Mueble m;
                     m = getMueble();
+                    if(m.belongsToOrder()){
+                        throw  new Exception("Mueble ya pertenece a un pedido!");
+                    }
                     muebles.add(m);
                     price += m.getPrice();
                     ok = true;

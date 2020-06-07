@@ -18,7 +18,7 @@ abstract class Menu {
 
     }
 
-    public int readOption(int optionsQuantiy){
+    protected int readOption(int optionsQuantiy){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
         int option = 1;
@@ -37,7 +37,7 @@ abstract class Menu {
         return option;
     }
 
-    public float readPrice(){
+    protected float readPrice(){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
         float option = 0.0f;
@@ -57,7 +57,7 @@ abstract class Menu {
         return option;
     }
 
-    public String readText(String label){
+    protected String readText(String label){
         Scanner input = new Scanner(System.in);
         boolean ok = false;
         String text = "";
@@ -77,11 +77,11 @@ abstract class Menu {
         return text;
     }
 
-    public void printSeparator(){
+    protected void printSeparator(){
         System.out.println("******************************");
     }
 
-    Mueble getMueble() throws Exception{
+    protected Mueble getMueble() throws Exception{
         String id;
         String filter;
         boolean ok;
@@ -117,7 +117,7 @@ abstract class Menu {
         return getDb().getMuebles().getMuebleById(filter, id);
     }
 
-    int printMesaOpts(){
+    protected int printMesaOpts(){
         System.out.println("Seleccione:");
         System.out.println("Mesa dormitorio     (1)");
         System.out.println("Mesa comedor        (2)");
@@ -126,7 +126,7 @@ abstract class Menu {
         return readOption(4);
     }
 
-    int printSillaOpts(){
+    protected int printSillaOpts(){
         System.out.println("Seleccione:");
         System.out.println("Silla cocina               (1)");
         System.out.println("Silla plegable             (2)");
@@ -135,7 +135,7 @@ abstract class Menu {
         return readOption(4);
     }
 
-    Material selectMaterial(){
+    protected Material selectMaterial(){
         boolean ok = false;
         Material m = Material.MADERA;
         do {
@@ -168,7 +168,7 @@ abstract class Menu {
         return m;
     }
 
-    public Database getDb() {
+    protected Database getDb() {
         return db;
     }
 }

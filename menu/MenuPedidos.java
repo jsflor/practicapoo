@@ -5,7 +5,6 @@ import pedido.Pedido;
 import persona.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Write a description of class MenuPedidos here.
@@ -19,23 +18,24 @@ public class MenuPedidos extends Menu {
         init();
     }
 
-    void init() {
+    private void init() {
         boolean exit = false;
         do {
             System.out.println("Gestión pedidos. Seleccione opción:");
             System.out.println("Nuevo pedido     (1)");
-            System.out.println("Salir            (2)");
-            int optionSelected = readOption(2);
+            System.out.println("Buscar pedido    (2)");
+            System.out.println("Salir            (3)");
+            int optionSelected = readOption(3);
             switch (optionSelected) {
                 case 1:
                     printSeparator();
-                    try{
-                        addPedido();
-                    } catch (Exception e){
-                        System.out.println(e.getMessage());
-                    }
+                    addPedido();
                     break;
                 case 2:
+                    printSeparator();
+                    searchPedido();
+                    break;
+                case 3:
                     printSeparator();
                     exit = true;
                     break;
@@ -43,7 +43,24 @@ public class MenuPedidos extends Menu {
         } while (!exit);
     }
 
-    void addPedido() throws Exception{
+    private void searchPedido() {
+        boolean ok;
+        do {
+            try{
+                String id = readText("Indique id pedido: ");
+                Pedido p = getDb().getPedidos().getPedidoById(id);
+                printSeparator();
+                p.printPedido();
+                printSeparator();
+                ok = true;
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                ok = false;
+            }
+        } while (!ok);
+    }
+
+    private void addPedido(){
         int qty;
         int customerId;
         int employeeId;
@@ -75,18 +92,21 @@ public class MenuPedidos extends Menu {
 
         Pedido p = new Pedido(muebles, customerId, employeeId, price);
         getDb().getPedidos().insertOnePedido(p);
-        muebles.forEach(m -> m.setOrderId(p.getId()));
+        muebles.forEach(m -> {
+            m.setOrderId(p.getId());
+            m.setBelongsToOrder(true);
+        });
+        printSeparator();
+        p.printPedido();
+        printSeparator();
     }
 
-    private int checkEmployeeId() throws Exception{
+    private int checkEmployeeId(){
         String employeeId;
         Persona result = null;
         boolean ok;
         do {
-            employeeId = readText("Indique id del responsable (para salir 'exit')");
-            if(employeeId.equals("exit")){
-                throw new Exception("Operacion abortada");
-            }
+            employeeId = readText("Indique id del responsable");
             try {
                 result  = getDb().getPersonas().getPersonaById("EMPLEADO", employeeId);
                 ok = true;
@@ -98,15 +118,12 @@ public class MenuPedidos extends Menu {
         return result.getId();
     }
 
-    private int checkCustomerId() throws Exception {
+    private int checkCustomerId() {
         String customerId;
         Persona result = null;
         boolean ok;
         do {
-            customerId = readText("Indique id del responsable");
-            if(customerId.equals("exit")){
-                throw new Exception("Operacion abortada");
-            }
+            customerId = readText("Indique id del cliente");
             try {
                 result  = getDb().getPersonas().getPersonaById("CLIENTE", customerId);
                 ok = true;

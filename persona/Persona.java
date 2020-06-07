@@ -28,21 +28,23 @@ public abstract class Persona {
     public abstract int getId();
 
     public void printFiscalData(){
-        switch (fiscalIdType){
+        switch (getFiscalIdType()){
             case DNI:
                 System.out.println("DNI " + getFiscalId());
+                break;
             case CIF:
-                System.out.println("cif " + getFiscalId());
+                System.out.println("CIF " + getFiscalId());
+                break;
         }
     }
 
     public void printAddress(){
-        if(address != null){
-            System.out.println("Calle: " + address.getStreet());
-            System.out.println("Ciudad: " + address.getCity());
-            System.out.println("Cp: " + address.getZipCode());
-            System.out.println("Pais: " + address.getCountry());
-            System.out.println("Tlf. contacto: " + address.getContactPhone());
+        if(getAddress() != null){
+            System.out.println("Calle: " + getAddress().getStreet());
+            System.out.println("Ciudad: " + getAddress().getCity());
+            System.out.println("Cp: " + getAddress().getZipCode());
+            System.out.println("Pais: " + getAddress().getCountry());
+            System.out.println("Tlf. contacto: " + getAddress().getContactPhone());
         }
     }
 

@@ -16,16 +16,15 @@ public class MenuPrincipal extends Menu {
         init();
     }
 
-    public void init() {
+    private void init() {
         boolean exit = false;
         do {
             System.out.println("Bienvenido! Seleccione opción:");
             System.out.println("Gestión muebles  (1)");
             System.out.println("Gestión personas (2)");
             System.out.println("Gestión pedidos  (3)");
-            System.out.println("Búsqueda         (4)");
-            System.out.println("Salir            (5)");
-            int optionSelected = readOption(5);
+            System.out.println("Salir            (4)");
+            int optionSelected = readOption(4);
             switch (optionSelected){
                 case 1:
                     printSeparator();
@@ -41,33 +40,25 @@ public class MenuPrincipal extends Menu {
                     break;
                 case 4:
                     printSeparator();
-                    search();
-                    break;
-                case 5:
-                    printSeparator();
                     exit = true;
                     break;
             }
         } while (!exit);
     }
 
-    public void manageMuebles(){
+    private void manageMuebles(){
         new MenuMuebles();
     }
 
-    public void managePersonas(){
+    private void managePersonas(){
         new MenuPersonas();
     }
 
-    public void managePedidos(){
-        System.out.println("Gestión pedidos");
+    private void managePedidos(){
+        new MenuPedidos();
     }
 
-    public void search(){
-        System.out.println("Gestión busqueda");
-    }
-
-    public void addInitialContent(){
+    private void addInitialContent(){
         System.out.println("**********MESAS************");
         getDb().getMuebles().insertOneMueble(new MesaDormitorio("Mesita de noche", 12.0f, Material.MADERA));
         getDb().getMuebles().insertOneMueble(new MesaDormitorio("Mesita de noche cristal", 20.0f, Material.CRISTAL));

@@ -1,9 +1,6 @@
 package menu;
 
-import mueble.*;
 import persona.*;
-
-import java.util.List;
 
 /**
  * Write a description of class MenuMPersonas here.
@@ -17,14 +14,15 @@ public class MenuPersonas extends Menu {
         init();
     }
 
-    void init(){
+    private void init(){
         boolean exit = false;
         do {
             System.out.println("Gestión personas. Seleccione opción:");
             System.out.println("Alta empleado     (1)");
             System.out.println("Alta cliente      (2)");
-            System.out.println("Salir             (3)");
-            int optionSelected = readOption(3);
+            System.out.println("Buscar persona    (3)");
+            System.out.println("Salir             (4)");
+            int optionSelected = readOption(4);
             switch (optionSelected){
                 case 1:
                     printSeparator();
@@ -36,15 +34,52 @@ public class MenuPersonas extends Menu {
                     break;
                 case 3:
                     printSeparator();
+                    searchPersona();
+                    break;
+                case 4:
+                    printSeparator();
                     exit = true;
                     break;
             }
         } while (!exit);
     }
 
-    void addEmpleado(){
+    private void searchPersona() {
         boolean ok;
-        Persona p;
+        Persona p = null;
+        do {
+            try{
+                System.out.println("Seleccione: ");
+                System.out.println("Cliente     (1)");
+                System.out.println("Empleado    (2)");
+                int opt = readOption(2);
+                String id = readText("Indique id");
+                switch (opt){
+                    case 1:
+                        p = getDb().getPersonas().getPersonaById("CLIENTE", id);
+                        ok = true;
+                        break;
+                    case 2:
+                        p = getDb().getPersonas().getPersonaById("EMPLEADO", id);
+                        ok = true;
+                        break;
+                    default:
+                        ok = false;
+                        break;
+                }
+                printSeparator();
+                p.printData();
+                printSeparator();
+            } catch (Exception e){
+                System.out.println(e.getMessage());
+                ok = false;
+            }
+        } while (!ok);
+    }
+
+    private void addEmpleado(){
+        boolean ok;
+        Persona p = null;
         int opt;
         do {
             System.out.println("Seleccione:");
@@ -75,7 +110,8 @@ public class MenuPersonas extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + opt);
+                    ok = false;
+                    break;
             }
         } while (!ok);
 
@@ -86,9 +122,9 @@ public class MenuPersonas extends Menu {
         printSeparator();
     }
 
-    void addCliente(){
+    private void addCliente(){
         boolean ok;
-        Persona p;
+        Persona p = null;
         int opt;
         do {
             System.out.println("Seleccione:");
@@ -107,18 +143,20 @@ public class MenuPersonas extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + opt);
+                    ok = false;
+                    break;
             }
         } while (!ok);
 
-        printPersona(p);
+        printSeparator();
+        p.printData();
         getDb().getPersonas().insertOnePersona(p);
         printSeparator();
     }
 
-    Persona displayEmpleadoOpts(int type){
+    private Persona displayEmpleadoOpts(int type){
         boolean ok;
-        Persona p;
+        Persona p = null;
         do {
             String name = readText("Introduzca nombre del empleado");
             String id = readText("Introduzca id documentacion fiscal");
@@ -141,16 +179,17 @@ public class MenuPersonas extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + type);
+                    ok = false;
+                    break;
             }
         } while (!ok);
         addressOpts(p);
         return p;
     }
 
-    Persona displayClienteOpts(int type){
+    private Persona displayClienteOpts(int type){
         boolean ok;
-        Persona p;
+        Persona p = null;
         do {
             String name = readText("Introduzca nombre del cliente");
             String id = readText("Introduzca id documentacion fiscal");
@@ -165,14 +204,15 @@ public class MenuPersonas extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + type);
+                    ok = false;
+                    break;
             }
         } while (!ok);
         addressOpts(p);
         return p;
     }
 
-    void addressOpts(Persona p){
+    private void addressOpts(Persona p){
         boolean ok;
         do {
             System.out.println("¿Desea introducir direccion?");
@@ -189,28 +229,18 @@ public class MenuPersonas extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + opt);
+                    ok = false;
+                    break;
             }
         } while (!ok);
     }
 
-    Address readAddress(){
+    private Address readAddress(){
         String street = readText("Calle");
         String city = readText("Ciudad");
         String zipCode = readText("CP");
         String country = readText("Pais");
         int phone = Integer.parseInt(readText("Telefono"));
         return new Address(street, city, zipCode, country, phone);
-    }
-
-    void printPersona(Persona p){
-        System.out.println(" ");
-        System.out.println("Id: " + p.getId());
-        System.out.println("Tipo: " + p.getClass());
-        System.out.println("Nombre: " + p.getName());
-        System.out.println("Direccion: " + p.getAddress());
-        System.out.println("Id: " + p.getFiscalId());
-        System.out.println("Tipo documento: " + p.getFiscalIdType());
-        System.out.println(" ");
     }
 }

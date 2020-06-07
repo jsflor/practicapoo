@@ -14,7 +14,7 @@ public class MenuMuebles extends Menu {
         init();
     }
 
-    public void init(){
+    private void init(){
         boolean exit = false;
         do {
             System.out.println("Gestión muebles. Seleccione opción:");
@@ -44,7 +44,7 @@ public class MenuMuebles extends Menu {
         } while (!exit);
     }
 
-    public void searchMueble() {
+    private void searchMueble() {
         Mueble m = null;
         try {
             m  = getMueble();
@@ -56,9 +56,9 @@ public class MenuMuebles extends Menu {
         }
     }
 
-    public void addMueble(){
+    private void addMueble(){
         boolean ok;
-        Mueble m;
+        Mueble m = null;
         int opt;
         do {
             System.out.println("Seleccione:");
@@ -77,7 +77,8 @@ public class MenuMuebles extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + opt);
+                    ok = false;
+                    break;
             }
         } while (!ok);
 
@@ -86,7 +87,7 @@ public class MenuMuebles extends Menu {
         printSeparator();
     }
 
-    public void updateMueble(){
+    private void updateMueble(){
         Mueble m = null;
         try {
             m  = getMueble();
@@ -94,6 +95,7 @@ public class MenuMuebles extends Menu {
             printSeparator();
             System.out.println("Estado actual mueble seleccionado");
             m.printData();
+            printSeparator();
 
             String articleName = readText("Introduzca nombre de articulo");
             float price = readPrice();
@@ -104,14 +106,15 @@ public class MenuMuebles extends Menu {
             printSeparator();
             System.out.println("Mueble actualizado");
             m.printData();
+            printSeparator();
         } catch (Exception e){
             System.out.println(e.getMessage());
         }
     }
 
-    public  Mueble displayMesaOpts() {
+    private  Mueble displayMesaOpts() {
         boolean ok;
-        Mueble mesa;
+        Mueble mesa = null;
         do {
             int optionSelected = printMesaOpts();
 
@@ -138,15 +141,16 @@ public class MenuMuebles extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + optionSelected);
+                    ok = false;
+                    break;
             }
         } while (!ok);
         return mesa;
     }
 
-    public Mueble displaySillaOpts() {
+    private Mueble displaySillaOpts() {
         boolean ok;
-        Mueble silla;
+        Mueble silla = null;
         do {
             int optionSelected = printSillaOpts();
 
@@ -172,7 +176,8 @@ public class MenuMuebles extends Menu {
                     ok = true;
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + optionSelected);
+                    ok = false;
+                    break;
             }
         } while (!ok);
         return silla;

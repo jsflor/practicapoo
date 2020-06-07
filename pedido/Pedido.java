@@ -32,6 +32,17 @@ public class Pedido {
         count++;
     }
 
+    public void printPedido(){
+        System.out.println("Pedido");
+        System.out.println("Id: " + getId());
+        System.out.println("Id Cliente: " + getCustomerId());
+        System.out.println("Id Empleado: " + getResponsibleId());
+        System.out.println("#" + getMuebles().size() + " Muebles: ");
+        for (Mueble m: getMuebles()){
+            m.printData();
+        }
+    }
+
     public int getId() {
         return id;
     }
